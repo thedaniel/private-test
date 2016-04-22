@@ -13,7 +13,6 @@ var defaultOptions = {
 var TypeScriptSimple = null
 var typescriptVersionDir = null
 
-exports.shouldCompile = function () {
   return true
 }
 
@@ -33,9 +32,7 @@ exports.getCachePath = function (sourceCode) {
 }
 
 exports.compile = function (sourceCode, filePath) {
-  if (!TypeScriptSimple) {
-    TypeScriptSimple = require('typescript-simple').TypeScriptSimple
-  }
+
 
   var options = _.defaults({filename: filePath}, defaultOptions)
   return new TypeScriptSimple(options, false).compile(sourceCode, filePath)

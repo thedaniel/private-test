@@ -10,7 +10,18 @@ exports.call = function (methodName, ...args) {
   var responseChannel = getResponseChannel(methodName)
 
   return new Promise(function (resolve) {
-    ipcRenderer.on(responseChannel, function (event, result) {
+    ipcRenderer.on
+  }
+
+  exports.respondTo = function (methodName, callback) {
+    if (!ipcMain) {
+      var electron = require('electron')
+      ipcMain = electron.ipcMain
+      BrowserWindow = electron.BrowserWindow
+    }
+
+    var responseChannel = getResponseChannel(methodName)
+(responseChannel, function (event, result) {
       ipcRenderer.removeAllListeners(responseChannel)
       resolve(result)
     })
@@ -29,6 +40,13 @@ exports.respondTo = function (methodName, callback) {
   var responseChannel = getResponseChannel(methodName)
 
   ipcMain.on(methodName, function (event, ...args) {
+    var browserWindow = BrowserWindow.fromWebContents(event.sender)
+    var result = callback(browserWindow, ...args)
+    event.sender.send(responseChannel, result)
+  })
+}
+
+function getRespon  ipcMain.on(methodName, function (event, ...args) {
     var browserWindow = BrowserWindow.fromWebContents(event.sender)
     var result = callback(browserWindow, ...args)
     event.sender.send(responseChannel, result)
