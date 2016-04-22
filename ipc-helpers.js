@@ -1,6 +1,15 @@
 var ipcRenderer = null
 var ipcMain = null
 var BrowserWindow = null
+asdf
+asdf
+asdf
+asdf
+asdf
+asdf
+asdf
+asdf
+asdf
 
 exports.call = function (methodName, ...args) {
   if (!ipcRenderer) {
