@@ -16,6 +16,9 @@ function listen (element, eventName, selector, handler) {
       while (currentTarget) {
         if (currentTarget.matches && currentTarget.matches(selector)) {
           handler({
+            
+            
+            
             type: event.type,
             currentTarget: currentTarget,
             target: event.target,
